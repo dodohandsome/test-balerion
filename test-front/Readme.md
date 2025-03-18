@@ -8,7 +8,7 @@
 2. รันคำสั่ง `docker-compose up -d` เพื่อรันไฟล์ `docker-compose.yml`
 
 
-### 3. จากนั้นไปที่ [localhost](http://localhost/auth/login)
+### 3. จากนั้นไปที่ [localhost](http://localhost)
 
 
 ### 4. จากนั้นกรอก username & password
