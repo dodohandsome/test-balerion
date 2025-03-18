@@ -52,6 +52,9 @@ func (c *ListCard) GetCards(role string) []Card {
 				cards = append(cards, card)
 			}
 		}
+		sort.Slice(cards, func(i, j int) bool {
+			return cards[i].CreatedAt.Before(cards[j].CreatedAt)
+		})
 	}
 	return cards
 }
