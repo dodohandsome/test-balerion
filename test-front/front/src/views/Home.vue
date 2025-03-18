@@ -16,8 +16,15 @@
         Memo Cards ({{ cards.length }})
       </h1>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <div v-for="card in cards" :key="card.id" class="bg-white rounded-lg p-6 text-black shadow-md">
+        <div v-for="card in cards" :key="card.id" class="bg-white rounded-lg p-6 text-black shadow-md relative">
+          <div class="absolute -top-2 right-2">
+            <span v-if="isNewCard(card.createdAt)"
+              class="inline-block bg-purple-500 text-white rounded-full px-3 py-1 text-xs font-semibold">
+              NEW
+            </span>
+          </div>
           <div class="flex items-start space-x-4">
+
             <div class="flex flex-col">
               <span class="text-xl font-bold text-gray-700">
                 {{ card.id }}
@@ -78,7 +85,7 @@ onMounted(() => {
 async function handleCreateCard() {
   if (newCardContent.value.trim()) {
     try {
-      await cardsStore.createCard(newCardContent.value.trim());
+      await cardsStore.createCard(newCardContent.value.trim(), authStore.user?.role);
       newCardContent.value = '';
       showNewCardModal.value = false;
     } catch (error) {
@@ -86,7 +93,11 @@ async function handleCreateCard() {
     }
   }
 }
-// if (!authStore.isAuthenticated) {
-//   router.push('/auth/login');
-// }
+
+const isNewCard = (createdAt: string) => {
+  const cardTime = new Date(createdAt).getTime();
+  const now = new Date().getTime();
+  const diffInSeconds = (now - cardTime) / 1000;
+  return diffInSeconds <= 5; // การ์ดใหม่ภายใน 5 วิ
+};
 </script>

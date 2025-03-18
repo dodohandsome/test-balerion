@@ -17,11 +17,14 @@ export const useCardsStore = defineStore('cards', () => {
     }
   }
 
-  async function createCard(description: string) {
+  async function createCard(description: string, role: any) {
     try {
       const newCard = await createCardApi({ description });
-      // เพิ่ม card ใหม่เข้าไปใน state
-      cards.value.push(newCard);
+      if (role === 'ADMIN') {
+        cards.value.unshift(newCard);
+      } else {
+        cards.value.push(newCard);
+      }
       console.log('Created new card:', newCard);
     } catch (error) {
       console.error('Failed to create card:', error);

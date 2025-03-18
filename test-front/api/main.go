@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"sort"
 	"strings"
 	"sync"
 	"time"
@@ -42,6 +43,9 @@ func (c *ListCard) GetCards(role string) []Card {
 	var cards []Card
 	if role == "ADMIN" {
 		cards = c.cards
+		sort.Slice(cards, func(i, j int) bool {
+			return cards[i].CreatedAt.After(cards[j].CreatedAt)
+		})
 	} else if role == "USER" {
 		for _, card := range c.cards {
 			if card.Tag == "USER" {
