@@ -4,7 +4,8 @@
 
 
 ### 2. รันโปรแกรมผ่าน docker-compose.yml
-1. รันคำสั่ง `docker-compose up -d` เพื่อรันไฟล์ `docker-compose.yml`
+1. port 3000 และ port 80 ต้องไม่มีการใช้งานก่อน Run Docker
+2. รันคำสั่ง `docker-compose up -d` เพื่อรันไฟล์ `docker-compose.yml`
 
 
 ### 3. จากนั้นไปที่ [localhost](http://localhost/auth/login)
