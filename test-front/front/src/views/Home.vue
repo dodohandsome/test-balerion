@@ -24,22 +24,21 @@
             </span>
           </div>
           <div class="flex items-start space-x-4">
-
-            <div class="flex flex-col">
+            <div class="flex flex-col flex-shrink-0">
               <span class="text-xl font-bold text-gray-700">
                 {{ card.id }}
               </span>
-              <span class="mt-2 px-3 py-1 rounded-full text-sm font-semibold" :class="card.tag === 'ADMIN'
-                ? 'bg-red-100 text-red-800'
-                : 'bg-blue-100 text-blue-800'">
+              <span class="mt-2 px-3 py-1 rounded-full text-sm font-semibold"
+                :class="card.tag === 'ADMIN' ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800'">
                 {{ card.tag }}
               </span>
             </div>
-            <p class="flex-1 text-gray-800">
+            <p class="flex-1 text-gray-800 break-words overflow-auto">
               {{ card.description }}
             </p>
           </div>
         </div>
+
         <button @click="showNewCardModal = true"
           class="bg-gray-700 rounded-lg p-6 flex items-center justify-center hover:bg-gray-600 shadow-md">
           <span class="text-4xl text-white">+</span>
